@@ -1,0 +1,918 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>TabunganKu - M. Fakhraj Abdillah</title>
+
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+    font-family:Arial,sans-serif;
+    background:#f1f5f9;
+    color:#172033;
+}
+
+header{
+    background:linear-gradient(135deg,#4f46e5,#7c3aed);
+    color:white;
+    padding:25px 20px;
+}
+
+.header-content{
+    max-width:1100px;
+    margin:auto;
+}
+
+header h1{
+    font-size:27px;
+    margin-bottom:7px;
+}
+
+header p{
+    opacity:.85;
+}
+
+.container{
+    max-width:1100px;
+    margin:25px auto;
+    padding:0 15px;
+}
+
+/* SALDO */
+
+.saldo-card{
+    padding:25px;
+    border-radius:22px;
+    color:white;
+    background:linear-gradient(135deg,#111827,#374151);
+    box-shadow:0 10px 25px rgba(0,0,0,.12);
+}
+
+.saldo-label{
+    font-size:14px;
+    opacity:.8;
+}
+
+#saldo{
+    margin-top:10px;
+    font-size:38px;
+    font-weight:bold;
+}
+
+/* STATISTIK */
+
+.stats{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:15px;
+    margin-top:20px;
+}
+
+.stat{
+    padding:20px;
+    background:white;
+    border-radius:18px;
+    box-shadow:0 5px 18px rgba(0,0,0,.06);
+}
+
+.stat small{
+    color:#64748b;
+}
+
+.stat h3{
+    margin-top:8px;
+}
+
+/* GRID */
+
+.grid{
+    display:grid;
+    grid-template-columns:1fr 1.5fr;
+    gap:20px;
+    margin-top:20px;
+}
+
+/* CARD */
+
+.card{
+    padding:23px;
+    background:white;
+    border-radius:20px;
+    box-shadow:0 5px 18px rgba(0,0,0,.06);
+}
+
+.card h2{
+    margin-bottom:20px;
+    font-size:20px;
+}
+
+/* FORM */
+
+label{
+    display:block;
+    margin-bottom:7px;
+    font-size:14px;
+    font-weight:bold;
+}
+
+.form-group{
+    margin-bottom:15px;
+}
+
+input,
+select{
+    width:100%;
+    padding:14px;
+    border:1px solid #dbe2ea;
+    border-radius:10px;
+    outline:none;
+    font-size:15px;
+    background:#f8fafc;
+}
+
+input:focus,
+select:focus{
+    border-color:#4f46e5;
+    background:white;
+}
+
+button{
+    width:100%;
+    padding:14px;
+    border:none;
+    border-radius:10px;
+    color:white;
+    background:linear-gradient(135deg,#4f46e5,#7c3aed);
+    font-size:15px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+button:active{
+    transform:scale(.98);
+}
+
+/* RIWAYAT */
+
+.riwayat{
+    max-height:500px;
+    overflow-y:auto;
+}
+
+.item{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:10px;
+    padding:15px 0;
+    border-bottom:1px solid #e5e7eb;
+}
+
+.item-info{
+    min-width:0;
+}
+
+.item-info strong{
+    display:block;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+}
+
+.item-info small{
+    display:block;
+    margin-top:4px;
+    color:#94a3b8;
+}
+
+.masuk{
+    color:#16a34a;
+    font-weight:bold;
+}
+
+.keluar{
+    color:#dc2626;
+    font-weight:bold;
+}
+
+.hapus{
+    width:auto;
+    padding:7px 10px;
+    margin-left:8px;
+    background:#fee2e2;
+    color:#dc2626;
+    font-size:12px;
+}
+
+.empty{
+    padding:40px 10px;
+    text-align:center;
+    color:#94a3b8;
+}
+
+/* TARGET */
+
+.target{
+    margin-top:20px;
+    padding:22px;
+    background:white;
+    border-radius:20px;
+    box-shadow:0 5px 18px rgba(0,0,0,.06);
+}
+
+.target-top{
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:12px;
+}
+
+.progress{
+    height:12px;
+    background:#e5e7eb;
+    border-radius:20px;
+    overflow:hidden;
+}
+
+.progress-bar{
+    height:100%;
+    width:0%;
+    background:linear-gradient(90deg,#4f46e5,#a855f7);
+    transition:.3s;
+}
+
+/* FOOTER */
+
+footer{
+    text-align:center;
+    padding:30px 15px;
+    color:#94a3b8;
+    font-size:13px;
+}
+
+/* MOBILE */
+
+@media(max-width:750px){
+
+    .stats{
+        grid-template-columns:1fr;
+    }
+
+    .grid{
+        grid-template-columns:1fr;
+    }
+
+    #saldo{
+        font-size:30px;
+    }
+
+}
+</style>
+</head>
+
+<body>
+
+<header>
+
+<div class="header-content">
+
+<h1>💰 TabunganKu</h1>
+
+<p>
+M. Fakhraj Abdillah • Tabungan Siswa
+</p>
+
+</div>
+
+</header>
+
+
+<div class="container">
+
+
+<!-- SALDO -->
+
+<div class="saldo-card">
+
+<div class="saldo-label">
+Total Saldo
+</div>
+
+<div id="saldo">
+Rp 0
+</div>
+
+</div>
+
+
+<!-- STATISTIK -->
+
+<div class="stats">
+
+<div class="stat">
+
+<small>💰 Total Menabung</small>
+
+<h3 id="totalMasuk">
+Rp 0
+</h3>
+
+</div>
+
+
+<div class="stat">
+
+<small>💸 Total Penarikan</small>
+
+<h3 id="totalKeluar">
+Rp 0
+</h3>
+
+</div>
+
+
+<div class="stat">
+
+<small>📊 Jumlah Transaksi</small>
+
+<h3 id="jumlah">
+0
+</h3>
+
+</div>
+
+</div>
+
+
+<!-- TARGET -->
+
+<div class="target">
+
+<div class="target-top">
+
+<strong>
+🎯 Target Tabungan
+</strong>
+
+<strong id="persen">
+0%
+</strong>
+
+</div>
+
+<div class="progress">
+
+<div
+class="progress-bar"
+id="progress">
+</div>
+
+</div>
+
+<p style="margin-top:8px;color:#64748b;font-size:13px">
+Target: Rp 1.000.000
+</p>
+
+</div>
+
+
+<!-- FORM + RIWAYAT -->
+
+<div class="grid">
+
+
+<!-- FORM -->
+
+<div class="card">
+
+<h2>
+➕ Tambah Transaksi
+</h2>
+
+
+<div class="form-group">
+
+<label>
+Jenis Transaksi
+</label>
+
+<select id="jenis">
+
+<option value="masuk">
+💰 Menabung
+</option>
+
+<option value="keluar">
+💸 Penarikan
+</option>
+
+</select>
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+Keterangan
+</label>
+
+<input
+type="text"
+id="keterangan"
+placeholder="Contoh: Tabungan hari Senin">
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+Nominal
+</label>
+
+<input
+type="number"
+id="nominal"
+placeholder="Contoh: 10000"
+min="1">
+
+</div>
+
+
+<button
+onclick="simpan()">
+
+💾 SIMPAN TRANSAKSI
+
+</button>
+
+</div>
+
+
+<!-- RIWAYAT -->
+
+<div class="card">
+
+<h2>
+📋 Riwayat Transaksi
+</h2>
+
+<div
+class="riwayat"
+id="riwayat">
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+<footer>
+
+© 2026 TabunganKu • M. Fakhraj Abdillah
+
+</footer>
+
+
+<script>
+
+/* ===================================
+   DATA TABUNGAN
+=================================== */
+
+let data =
+JSON.parse(
+localStorage.getItem("tabunganFakhraj")
+) || [];
+
+
+/* ===================================
+   FORMAT RUPIAH
+=================================== */
+
+function rupiah(angka){
+
+return new Intl.NumberFormat(
+"id-ID",
+{
+style:"currency",
+currency:"IDR",
+minimumFractionDigits:0
+}
+).format(angka);
+
+}
+
+
+/* ===================================
+   SIMPAN KE LOCAL STORAGE
+=================================== */
+
+function simpanData(){
+
+localStorage.setItem(
+"tabunganFakhraj",
+JSON.stringify(data)
+);
+
+}
+
+
+/* ===================================
+   SIMPAN TRANSAKSI
+=================================== */
+
+function simpan(){
+
+const jenis =
+document.getElementById("jenis").value;
+
+const keterangan =
+document
+.getElementById("keterangan")
+.value
+.trim();
+
+const nominal =
+Number(
+document.getElementById("nominal").value
+);
+
+
+/* CEK KETERANGAN */
+
+if(keterangan === ""){
+
+alert(
+"⚠️ Silakan isi keterangan terlebih dahulu."
+);
+
+return;
+
+}
+
+
+/* CEK NOMINAL */
+
+if(!nominal || nominal <= 0){
+
+alert(
+"⚠️ Nominal harus lebih dari Rp 0."
+);
+
+return;
+
+}
+
+
+/* HITUNG SALDO */
+
+let saldoSekarang = 0;
+
+data.forEach(item => {
+
+if(item.jenis === "masuk"){
+
+saldoSekarang += item.nominal;
+
+}else{
+
+saldoSekarang -= item.nominal;
+
+}
+
+});
+
+
+/* CEK PENARIKAN */
+
+if(
+jenis === "keluar" &&
+nominal > saldoSekarang
+){
+
+alert(
+"❌ Saldo tidak mencukupi!"
+);
+
+return;
+
+}
+
+
+/* DATA BARU */
+
+const transaksi = {
+
+id:Date.now(),
+
+jenis:jenis,
+
+keterangan:keterangan,
+
+nominal:nominal,
+
+tanggal:new Date().toISOString()
+
+};
+
+
+/* MASUKKAN DATA */
+
+data.push(transaksi);
+
+
+/* SIMPAN */
+
+simpanData();
+
+
+/* KOSONGKAN FORM */
+
+document
+.getElementById("keterangan")
+.value = "";
+
+document
+.getElementById("nominal")
+.value = "";
+
+
+/* UPDATE */
+
+tampilkan();
+
+
+/* NOTIFIKASI */
+
+alert(
+"✅ Transaksi berhasil disimpan!"
+);
+
+}
+
+
+/* ===================================
+   TAMPILKAN DATA
+=================================== */
+
+function tampilkan(){
+
+let saldo = 0;
+let masuk = 0;
+let keluar = 0;
+
+
+/* HITUNG */
+
+data.forEach(item => {
+
+if(item.jenis === "masuk"){
+
+saldo += item.nominal;
+
+masuk += item.nominal;
+
+}else{
+
+saldo -= item.nominal;
+
+keluar += item.nominal;
+
+}
+
+});
+
+
+/* DASHBOARD */
+
+document
+.getElementById("saldo")
+.textContent =
+rupiah(saldo);
+
+document
+.getElementById("totalMasuk")
+.textContent =
+rupiah(masuk);
+
+document
+.getElementById("totalKeluar")
+.textContent =
+rupiah(keluar);
+
+document
+.getElementById("jumlah")
+.textContent =
+data.length;
+
+
+/* PROGRESS */
+
+const target = 1000000;
+
+let persen =
+(saldo / target) * 100;
+
+if(persen < 0){
+persen = 0;
+}
+
+if(persen > 100){
+persen = 100;
+}
+
+
+document
+.getElementById("progress")
+.style.width =
+persen + "%";
+
+document
+.getElementById("persen")
+.textContent =
+Math.round(persen) + "%";
+
+
+/* RIWAYAT */
+
+const riwayat =
+document.getElementById("riwayat");
+
+riwayat.innerHTML = "";
+
+
+if(data.length === 0){
+
+riwayat.innerHTML = `
+
+<div class="empty">
+
+<div style="font-size:40px">
+📭
+</div>
+
+<p>
+Belum ada transaksi.
+</p>
+
+</div>
+
+`;
+
+return;
+
+}
+
+
+/* DATA TERBARU DI ATAS */
+
+const terbaru =
+[...data].reverse();
+
+
+terbaru.forEach(item => {
+
+const div =
+document.createElement("div");
+
+div.className =
+"item";
+
+
+const info =
+document.createElement("div");
+
+info.className =
+"item-info";
+
+
+const nama =
+document.createElement("strong");
+
+nama.textContent =
+item.keterangan;
+
+
+const tanggal =
+document.createElement("small");
+
+tanggal.textContent =
+new Date(
+item.tanggal
+).toLocaleString(
+"id-ID"
+);
+
+
+info.appendChild(nama);
+
+info.appendChild(tanggal);
+
+
+const kanan =
+document.createElement("div");
+
+
+const jumlah =
+document.createElement("span");
+
+jumlah.className =
+item.jenis === "masuk"
+? "masuk"
+: "keluar";
+
+
+jumlah.textContent =
+(item.jenis === "masuk"
+? "+ "
+: "- ")
++
+rupiah(item.nominal);
+
+
+const hapus =
+document.createElement("button");
+
+hapus.className =
+"hapus";
+
+hapus.textContent =
+"🗑️";
+
+
+hapus.onclick =
+function(){
+
+hapusTransaksi(item.id);
+
+};
+
+
+kanan.appendChild(jumlah);
+
+kanan.appendChild(hapus);
+
+
+div.appendChild(info);
+
+div.appendChild(kanan);
+
+
+riwayat.appendChild(div);
+
+});
+
+}
+
+
+/* ===================================
+   HAPUS TRANSAKSI
+=================================== */
+
+function hapusTransaksi(id){
+
+const yakin =
+confirm(
+"Yakin ingin menghapus transaksi ini?"
+);
+
+
+if(!yakin){
+return;
+}
+
+
+data =
+data.filter(
+item => item.id !== id
+);
+
+
+simpanData();
+
+tampilkan();
+
+}
+
+
+/* ===================================
+   JALANKAN SAAT WEBSITE DIBUKA
+=================================== */
+
+tampilkan();
+
+</script>
+
+</body>
+</html>
